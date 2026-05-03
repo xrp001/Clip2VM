@@ -7,6 +7,9 @@ build/
 __pycache__/
 *.pyc
 
+# Claude Code (local)
+.claude/
+
 # IDE
 .vscode/
 .idea/
