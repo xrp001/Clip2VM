@@ -1,0 +1,15 @@
+[Unit]
+Description=Clip2VM clipboard-to-VM keyboard injection daemon
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=python3 /path/to/Clip2VM/clip2vm-daemon.py
+Restart=on-failure
+RestartSec=3
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/run/user/1000/gdm/Xauthority
+
+[Install]
+WantedBy=default.target

@@ -48,6 +48,17 @@ python3 build.py
 
 目标机器只需 `sudo apt install xdotool xclip`，无需 Python 或任何 pip 包。
 
+### 方式三：systemd 服务（开机自启）
+
+```bash
+# 复制并编辑服务文件，将路径替换为实际目录
+cp clip2vm.service ~/.config/systemd/user/
+# 编辑 ~/.config/systemd/user/clip2vm.service，修改 ExecStart、DISPLAY、XAUTHORITY
+
+systemctl --user daemon-reload
+systemctl --user enable --now clip2vm.service
+```
+
 ## 多窗口模式
 
 `python3 clip2vm-daemon.py m` 将剪贴板内容一次投递到多个窗口：
@@ -103,6 +114,7 @@ Sending to 2 windows ...
 ```
 Clip2VM/
 ├── clip2vm-daemon.py    # 唯一入口
+├── clip2vm.service       # systemd 服务文件（模板，使用前需修改路径）
 ├── build.py             # 打包为独立二进制
 ├── clip2vm/
 │   ├── backends.py      # xdotool / ydotool / wtype / pyautogui
